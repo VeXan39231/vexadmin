@@ -15,7 +15,6 @@ http://www.steamcommunity.com/id/SmellyWetSock
 
 --This is some crappy admin menu I made with Derma.
 
-
 --Loading message.
 MsgC( Color( 255, 0, 0 ), "-------------------\n" )
 MsgC( Color( 0, 255, 255 ), "Loading VexAdmin...\n" )
