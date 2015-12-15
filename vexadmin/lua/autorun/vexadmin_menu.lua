@@ -15,6 +15,8 @@ http://www.steamcommunity.com/id/SmellyWetSock
 
 --This is some crappy admin menu I made with Derma.
 
+--VexAdmin V 0.2
+
 --Loading message.
 MsgC( Color( 255, 0, 0 ), "-------------------\n" )
 MsgC( Color( 0, 255, 255 ), "Loading VexAdmin...\n" )
@@ -28,7 +30,7 @@ background:Center()
 background:MakePopup()
 background:SetTitle( "VexAdmin Menu" )
 background:ShowCloseButton( true )
-background:SetSize( 800, 450 )
+background:SetSize( 425, 450 )
 
 
 
@@ -68,6 +70,7 @@ local kick = vgui.Create( "DImageButton" )
 kick:SetParent( background )
 kick:SetPos( 310, 30 )
 kick:SetImage( "vexadmin/kick.png" )
+kick:SetToolTip( "Kick" )
 kick:SizeToContents()
 function kick.DoClick( ply )
   RunConsoleCommand( "ulx", "kick", selected, "You have been kicked from the server." ) --Kick the selected player
@@ -79,12 +82,14 @@ local bantime = vgui.Create( "DNumberWang" )
 bantime:SetParent( background )
 bantime:SetPos( 357, 72 )
 bantime:SetSize( 45, 15 )
+bantime:SetToolTip( "Ban for x minutes" )
 
 --Create the ban button.
 local ban = vgui.Create( "DImageButton" )
 ban:SetParent( background )
 ban:SetPos( 310, 65 )
 ban:SetImage( "vexadmin/ban.png" )
+ban:SetToolTip( "Ban" )
 ban:SizeToContents()
 function ban.DoClick( ply )
 	local ban_time = bantime:GetValue()
@@ -97,6 +102,7 @@ local slay = vgui.Create( "DImageButton" )
 slay:SetParent( background )
 slay:SetPos( 310, 100 )
 slay:SetImage( "vexadmin/slay.png" )
+slay:SetToolTip( "Slay" )
 slay:SizeToContents()
 function slay.DoClick( ply )
   RunConsoleCommand( "ulx", "slay", selected ) --Slay the selected player
@@ -107,9 +113,21 @@ local jail = vgui.Create( "DImageButton" )
 jail:SetParent( background )
 jail:SetPos( 310, 135 )
 jail:SetImage( "vexadmin/jail.png" )
+jail:SetToolTip( "Jail" )
 jail:SizeToContents()
 function jail.DoClick( ply )
   RunConsoleCommand( "ulx", "jail", selected, "30" ) --Jail the selected player
+end
+
+--Create the unjail button.
+local unjail = vgui.Create( "DImageButton" )
+unjail:SetParent( background )
+unjail:SetPos( 350, 135 )
+unjail:SetImage( "vexadmin/unjail.png" )
+unjail:SetToolTip( "Unjail" )
+unjail:SizeToContents()
+function unjail.DoClick( ply )
+  RunConsoleCommand( "ulx", "unjail", selected ) --Jail the selected player
 end
 
 --Create the ignite button.
@@ -117,6 +135,7 @@ local ignite = vgui.Create( "DImageButton" )
 ignite:SetParent( background )
 ignite:SetPos( 310, 170 )
 ignite:SetImage( "vexadmin/ignite.png" )
+ignite:SetToolTip( "Ignite" )
 ignite:SizeToContents()
 function ignite.DoClick( ply )
   RunConsoleCommand( "ulx", "ignite", selected, "30" ) --Ignite the selected player
@@ -127,6 +146,7 @@ local teleport = vgui.Create( "DImageButton" )
 teleport:SetParent( background )
 teleport:SetPos( 310, 205 )
 teleport:SetImage( "vexadmin/teleport.png" )
+teleport:SetToolTip( "Teleport" )
 teleport:SizeToContents()
 function teleport.DoClick( ply )
   local tpmenu = DermaMenu()
@@ -141,6 +161,102 @@ function teleport.DoClick( ply )
 	end
 
 --End the teleport function
+end
+
+--How much health do you want the player to have?
+local health = vgui.Create( "DNumberWang" )
+health:SetParent( background )
+health:SetPos( 357, 255 )
+health:SetSize( 45, 15 )
+health:SetToolTip( "How much health to set." )
+
+--Create the health button.
+local sethp = vgui.Create( "DImageButton" )
+sethp:SetParent( background )
+sethp:SetPos( 310, 245 )
+sethp:SetImage( "vexadmin/health.png" )
+sethp:SetToolTip( "Set Health" )
+sethp:SizeToContents()
+function sethp.DoClick( ply )
+	local hp_val = health:GetValue()
+  RunConsoleCommand( "ulx", "hp", selected, hp_val ) --Set the player's health.
+end
+
+--Create the slap button.
+local slap = vgui.Create( "DImageButton" )
+slap:SetParent( background )
+slap:SetPos( 310, 285 )
+slap:SetImage( "vexadmin/slap.png" )
+slap:SetToolTip( "Slap" )
+slap:SizeToContents()
+function slap.DoClick( ply )
+  RunConsoleCommand( "ulx", "slap", selected ) --Slap the player.
+end
+
+--Create the freeze button.
+local freeze = vgui.Create( "DImageButton" )
+freeze:SetParent( background )
+freeze:SetPos( 310, 325 )
+freeze:SetImage( "vexadmin/freeze.png" )
+freeze:SetToolTip( "Freeze" )
+freeze:SizeToContents()
+function freeze.DoClick( ply )
+  RunConsoleCommand( "ulx", "freeze", selected ) --Freeze the player.
+end
+
+--Create the unfreeze button.
+local unfreeze = vgui.Create( "DImageButton" )
+unfreeze:SetParent( background )
+unfreeze:SetPos( 350, 325 )
+unfreeze:SetImage( "vexadmin/unfreeze.png" )
+unfreeze:SetToolTip( "Unfreeze" )
+unfreeze:SizeToContents()
+function unfreeze.DoClick( ply )
+  RunConsoleCommand( "ulx", "unfreeze", selected ) --Freeze the player.
+end
+
+--Create the mute button.
+local mute = vgui.Create( "DImageButton" )
+mute:SetParent( background )
+mute:SetPos( 310, 365 )
+mute:SetImage( "vexadmin/mute.png" )
+mute:SetToolTip( "Mute" )
+mute:SizeToContents()
+function mute.DoClick( ply )
+  RunConsoleCommand( "ulx", "mute", selected ) --Mute the player.
+end
+
+--Create the unmute button.
+local unmute = vgui.Create( "DImageButton" )
+unmute:SetParent( background )
+unmute:SetPos( 350, 365 )
+unmute:SetImage( "vexadmin/unmute.png" )
+unmute:SetToolTip( "Unmute" )
+unmute:SizeToContents()
+function unmute.DoClick( ply )
+  RunConsoleCommand( "ulx", "unmute", selected ) --Unmute the player.
+end
+
+--Create the gag button.
+local gag = vgui.Create( "DImageButton" )
+gag:SetParent( background )
+gag:SetPos( 310, 405 )
+gag:SetImage( "vexadmin/gag.png" )
+gag:SetToolTip( "Gag" )
+gag:SizeToContents()
+function gag.DoClick( ply )
+  RunConsoleCommand( "ulx", "gag", selected ) --Gag the player.
+end
+
+--Create the ungag button.
+local ungag = vgui.Create( "DImageButton" )
+ungag:SetParent( background )
+ungag:SetPos( 350, 405 )
+ungag:SetImage( "vexadmin/ungag.png" )
+ungag:SetToolTip( "Ungag" )
+ungag:SizeToContents()
+function ungag.DoClick( ply )
+  RunConsoleCommand( "ulx", "ungag", selected ) --Ungag the player.
 end
 
 --End the command itself.
@@ -183,9 +299,6 @@ MsgC( Color( 255, 0, 0 ), "-------------------\n" )
 background.Paint = function( self, w, h )
   draw.RoundedBox( 6, 0, 0, w, h, Color( 100, 100, 200, 255 ) )
 end
-
-
-
 local closebox = vgui.Create( "DFrame" )
 closebox:SetParent( background )
 closebox:SetPos( 780, 0 )
@@ -195,9 +308,6 @@ closebox:ShowCloseButton( false )
 closebox.Paint = function( self, w, h )
   draw.RoundedBoxEx( 6, 0, 0, 30, 20, Color( 200, 100, 100 ), false, true, false, false )
 end
-
-
-
 local close = vgui.Create( "DLabel" )
 close:SetParent( background )
 close:SetPos( 786, -3 )
