@@ -51,8 +51,6 @@ for k, v in pairs( player.GetAll() ) do
   SID = v:SteamID() --Set the SteamID
   if v:IsBot() then --Is the SteamID a bot?
     SID = "Bot" --If it is, make it say Bot.
-  else
-    SID = v:SteamID() --Don't change the SteamID
   end
 
   local NCK = v:Nick() --Find the player's name.
